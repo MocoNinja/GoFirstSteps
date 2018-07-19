@@ -31,6 +31,27 @@ func fors() {
 
 }
 
+func rangeInicio() {
+	fmt.Println("Hay un for especial bastante similar al foreach")
+	x := [10]int{
+		0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7,
+		8,
+		9,
+	}
+
+	// El range realmente es bastante tocho https://gobyexample.com/range
+	for i, value := range x {
+		fmt.Printf("El elemento %d del array es %d\n", i, value)
+	}
+}
+
 func ifs() {
 	esperable := true
 	inusual := false
@@ -77,4 +98,5 @@ func main() {
 	ifs()
 	otherIf(1)
 	otherIf(4)
+	rangeInicio()
 }
