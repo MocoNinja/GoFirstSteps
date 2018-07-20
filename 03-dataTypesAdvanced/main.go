@@ -53,6 +53,25 @@ func arrays() {
 
 func slices() {
 	fmt.Println("Los slices son cachitos de arrays, pero más flexibles debido a su tamaño DINÁMICO")
+
+	fmt.Println("En la creación de un slice, se crea automáticamente un array al que se asocia el slice")
+	arrayCreado := [3]bool{true, true, false}                                              // Un array
+	sliceQueCreaUnArrayComoElAnteriorYLoReferenciaEnEsteSlice := []bool{true, true, false} // Slice que apunta a un array que también se crea
+	// fmt.Println(arrayCreado == sliceQueCreaUnArrayComoElAnteriorYLoReferenciaEnEsteSlice)  // Si se tiene linter, se puede ver el error de tipo que da
+	fmt.Println(sliceQueCreaUnArrayComoElAnteriorYLoReferenciaEnEsteSlice, arrayCreado)
+
+	fmt.Println("Un slice tiene capacidad (que es el tamaño del array subyacente) y longitud(que es su número de elementos)")
+	fmt.Println("MUY IMPORTANTE: UN SLICE PUEDE TENER UNA LONGITUD MENOR O IGUAL A SU CAPACIDAD, PERO NUNCA MAYOR")
+	s := []int{2, 3, 5, 7, 11, 13}
+	printSlice(s)
+	s = s[:0]
+	printSlice(s)
+	s = s[:4]
+	printSlice(s)
+	// Drop its first two values.
+	s = s[2:]
+	printSlice(s)
+
 	elArray := [10]byte{
 		0,
 		1,
@@ -68,26 +87,22 @@ func slices() {
 	// var cashito1 []int = elArray[2:6] // declaración tocha
 	cashito1 := elArray[2:6]
 	fmt.Println(cashito1)
+	x := make([]int, 5)
+	y := make([]int, 5, 10)
+	printSlice(x)
+	printSlice(y)
+	// fmt.Println(len(x), len(y), x[5], y[8]) // No puede accederse a un índice fuera del slice aunque entre dentro del array
+	printSlice(y[5:10])
+}
 
-	fmt.Println("Si se especifica la creación de un slice, se crea automáticamente un array al que se asocia el slice")
-	arrayCreado := [3]bool{true, true, false}
-	sliceQueCreaUnArrayComoElAnteriorYLoReferenciaEnEsteSlice := []bool{true, true, false}
-	// fmt.Println(arrayCreado == sliceQueCreaUnArrayComoElAnteriorYLoReferenciaEnEsteSlice) // Si se tiene linter, se puede ver el error de tipo que da
-	fmt.Println(sliceQueCreaUnArrayComoElAnteriorYLoReferenciaEnEsteSlice, arrayCreado)
-
-	fmt.Println("Un slice tiene capacidad (que es el tamaño del array subyacente) y longitud(que es su número de elementos)")
-
-	s := []int{2, 3, 5, 7, 11, 13}
-	printSlice(s)
-	s = s[:0]
-	printSlice(s)
-	s = s[:4]
-	printSlice(s)
-	s = s[2:]
-	printSlice(s)
+func sliceFunctions() {
+	slice1 := []int{1, 2, 3}
+	slice2 := append(slice1, 4, 5, 6)
+	fmt.Println(slice2)
 }
 
 func main() {
 	arrays()
 	slices()
+	sliceFunctions()
 }
